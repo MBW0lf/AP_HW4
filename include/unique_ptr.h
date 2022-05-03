@@ -17,5 +17,12 @@ private:
     T* _p;
 };
 
+template <typename T>
+UniquePtr<T> make_unique(T inpt)
+{
+    UniquePtr<T> p = new T{inpt};
+    return p;
+}
+
 #include "unique_ptr.hpp"
 #endif //UNIQUE_PTR

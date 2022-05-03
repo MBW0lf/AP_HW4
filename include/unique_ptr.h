@@ -12,7 +12,10 @@ public:
     ~UniquePtr();
     T* get();
     T& operator*();
+    T* operator->();
     UniquePtr<T>& operator=(const UniquePtr& p);
+    void reset();
+    UniquePtr<T>& reset(T* p);
 private:
     T* _p;
 };

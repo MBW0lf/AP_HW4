@@ -15,6 +15,7 @@ UniquePtr<T> :: UniquePtr(UniquePtr &ptr)
 template<typename T>
 UniquePtr<T> :: ~UniquePtr() 
 {
+    delete _p;
     _p = nullptr;
 }
 ///////////Operator*//////////////////////////////////////////////////////////////////
@@ -22,6 +23,12 @@ template<typename T>
 T& UniquePtr<T>::operator*()
 {
     return (*_p);
+}
+///////////Operator->/////////////////////////////////////////////////////////////////
+template<typename T>
+T* UniquePtr<T>::operator->()
+{
+    return _p;
 }
 ///////////Operator=//////////////////////////////////////////////////////////////////
 template<typename T>
@@ -35,4 +42,19 @@ template<typename T>
 T* UniquePtr<T>::get()
 {
     return _p;
+}
+///////////reset1/////////////////////////////////////////////////////////////////////
+template<typename T>
+void UniquePtr<T>::reset()
+{
+    delete _p;
+    _p = nullptr;
+}
+///////////reset2/////////////////////////////////////////////////////////////////////
+template<typename T>
+UniquePtr<T>& UniquePtr<T>::reset(T* p)
+{
+    delete _p;
+    _p = p;
+    return(*this);
 }

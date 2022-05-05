@@ -6,11 +6,11 @@ UniquePtr<T> :: UniquePtr() : _p{nullptr}{};
 template<typename T>
 UniquePtr<T> :: UniquePtr(T* p) : _p{p}{};
 ///////////Constructor////////////////////////////////////////////////////////////////
-template<typename T>
-UniquePtr<T> :: UniquePtr(UniquePtr &ptr)
-{
-    _p = ptr.get();
-}
+// template<typename T>
+// UniquePtr<T> :: UniquePtr(UniquePtr &ptr)
+// {
+//     _p = ptr.get();
+// }
 ///////////Deconstructor//////////////////////////////////////////////////////////////
 template<typename T>
 UniquePtr<T> :: ~UniquePtr() 
@@ -31,12 +31,12 @@ T* UniquePtr<T>::operator->()
     return _p;
 }
 ///////////Operator=//////////////////////////////////////////////////////////////////
-template<typename T>
-UniquePtr<T>& UniquePtr<T>::operator=(const UniquePtr& p)
-{
-    _p = p.release();
-    return(*this);
-}
+// template<typename T>
+// UniquePtr<T>& UniquePtr<T>::operator=(const UniquePtr& p)
+// {
+//     _p = p.release();
+//     return(*this);
+// }
 ///////////Get////////////////////////////////////////////////////////////////////////
 template<typename T>
 T* UniquePtr<T>::get()
@@ -57,4 +57,12 @@ UniquePtr<T>& UniquePtr<T>::reset(T* p)
     delete _p;
     _p = p;
     return(*this);
+}
+///////////Operator Bool///////////////////////////////////////////////////////////////
+template<typename T>
+UniquePtr<T>::operator bool()
+{
+    if(_p)
+        return true;
+    return false;
 }

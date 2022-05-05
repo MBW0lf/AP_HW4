@@ -8,12 +8,13 @@ class UniquePtr
 public:
     UniquePtr();
     UniquePtr(T* _p);
-    UniquePtr(UniquePtr &ptr);
+    UniquePtr(UniquePtr &ptr) = delete;
     ~UniquePtr();
+    explicit operator bool();
     T* get();
     T& operator*();
     T* operator->();
-    UniquePtr<T>& operator=(const UniquePtr& p);
+    UniquePtr<T>& operator=(const UniquePtr& p) = delete;
     void reset();
     UniquePtr<T>& reset(T* p);
 private:
@@ -23,8 +24,7 @@ private:
 template <typename T>
 UniquePtr<T> make_unique(T inpt)
 {
-    UniquePtr<T> p = new T{inpt};
-    return p;
+    return UniquePtr<T> {new T{inpt}};
 }
 
 #include "unique_ptr.hpp"

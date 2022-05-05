@@ -17,7 +17,7 @@ public:
     T* release();
     UniquePtr<T>& operator=(const UniquePtr& p) = delete;
     void reset();
-    UniquePtr<T>& reset(T* p);
+    void reset(T* p);
 private:
     T* _p;
 };

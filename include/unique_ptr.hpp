@@ -34,7 +34,7 @@ T* UniquePtr<T>::operator->()
 // template<typename T>
 // UniquePtr<T>& UniquePtr<T>::operator=(const UniquePtr& p)
 // {
-//     _p = p.release();
+//     _p = p._p;
 //     return(*this);
 // }
 ///////////Get////////////////////////////////////////////////////////////////////////
@@ -52,11 +52,10 @@ void UniquePtr<T>::reset()
 }
 ///////////reset2/////////////////////////////////////////////////////////////////////
 template<typename T>
-UniquePtr<T>& UniquePtr<T>::reset(T* p)
+void UniquePtr<T>::reset(T* p)
 {
     delete _p;
     _p = p;
-    return(*this);
 }
 ///////////Operator Bool//////////////////////////////////////////////////////////////
 template<typename T>

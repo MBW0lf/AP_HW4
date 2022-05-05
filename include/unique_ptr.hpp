@@ -58,11 +58,19 @@ UniquePtr<T>& UniquePtr<T>::reset(T* p)
     _p = p;
     return(*this);
 }
-///////////Operator Bool///////////////////////////////////////////////////////////////
+///////////Operator Bool//////////////////////////////////////////////////////////////
 template<typename T>
 UniquePtr<T>::operator bool()
 {
     if(_p)
         return true;
     return false;
+}
+///////////Release//////////////////////////////////////////////////////////////
+template<typename T>
+T* UniquePtr<T>::release()
+{
+    T* outpt = _p;
+    _p = nullptr;
+    return outpt;
 }
